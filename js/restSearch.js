@@ -1,4 +1,4 @@
-// Let's create a pollyfill for Object.create
+// Let's create a polyfill for Object.create
 if ( typeof Object.create !== 'function') {
     
     Object.create = function( obj ){
