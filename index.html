@@ -1,84 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title> RESTful Search Plugin</title>
-		<link rel="stylesheet" href="./css/main.css">
-	</head>
-	
-	<body>
-		
-		<div class="wrapper">
-			<div class="search-wrapper">
-				<input type="text" id="q_box" class="q_box" placeholder="Search prodcuts">
-			</div>
-			<div class="data-wrapper">
-				<table id="tablet" cellpadding="5">
-					<thead></thead>
-					<tbody></tbody>
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title>Weather App</title>
+	<link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
+	<!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/icon?family=Material+Icons" >
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="location"></h1>
+				<p class="date"></p>
+				<i class="icon"></i>
+				<table class="table">
+					<tbody>
+						
+					</tbody>
 				</table>
+
 			</div>
 		</div>
+
 		
-			
-	<script src="./js/jquery.js"></script>
-	<script src="./js/restSearch.js"></script>
-	<script>
-		$(document).ready(function(){
-			
-			var url = "./items.json";
-			function addAllColumnHeaders(myList) {
-			    var columnSet = [];
-			    var headerTr$ = $('<tr/>');
-			
-			    for (var i = 0; i < myList.length; i++) {
-			        var rowHash = myList[i];
-			        for (var key in rowHash) {
-			            if ($.inArray(key, columnSet) == -1) {
-			                columnSet.push(key);
-			                headerTr$.append($('<th/>').html(key));
-			            }
-			        }
-			    }
-			    $("#tablet thead").append(headerTr$);
-			
-			    return columnSet;
-			}
+	</div>
 
-			$.getJSON(url, function (data) {
-			    var columns = addAllColumnHeaders(data);
-			
-			    for (var i = 0; i < data.length; i++) {
-			        var row$ = $('<tr/>');
-			        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-			            var cellValue = data[i][columns[colIndex]];
-			
-			            if (cellValue == null) { cellValue = ""; }
-			
-			            row$.append($('<td/>').html(cellValue));
-			        }
-			        $("#tablet tbody").append(row$);
-			    }
-			});
+	<div class="container app"></div>
 
-			$("#q_box").keyup(function(){
-			        _this = this;
-			        // Show only matching TR, hide rest of them
-			        $.each($("#tablet tbody").find("tr"), function() {
-			  
-			            if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1){
-			               $(this).hide();
-						   
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var lat,lang, api_url,api_key="5b57b0cdbbf3ea7c";
+	
+
+		if(navigator.geolocation) {
+
+			navigator.geolocation.getCurrentPosition(function(position) {
+
+				lat = position.coords.latitude;
+				lang = position.coords.longitude;
+				console.log(lat);
+				console.log(lang);
+				api_url = "http://api.wunderground.com/api/"+ api_key +"/forecast/geolookup/conditions/q/" + lat + "," + lang + ".json";
+
+				$.ajax({
+					url : api_url,
+					type:'get',
+					datatype:'jsonp',
+					success: function(data) {
+						var location =data['current_observation']['observation_location']['city'];
+						var temp = data['current_observation']['temp_c']
+						var forecast = data['forecast']['txt_forecast']['forecastday'];
+						var date = data['forecast']['txt_forecast']['date'];
+						$(".date").text("As of " + date);
+						var g=0;
+						$(".location").text(location);
+						for(i in forecast) {
+							console.log(forecast.length);
+							var count = forecast.length;
+							$(".icon").css('background-image',"url("+forecast[i]['icon']+")");
+							$(".icon").css('bacground','url('+ forecast[i]['icon_url'] +')');
+							$("table tbody").append(
+									"<tr>"
+										+"<td>"+ forecast[i]['title'] +"</td>"
+										+"<td>"+ forecast[i]['fcttext'] +"</td>"
+										+"<td>"+ forecast[i]['fcttext_metric'] +"</td>"
+									+"</tr>"
+								);
+							
+							
 						}
-			            else {
-					
-			                 $(this).show();           
-						}     
-			        });
-		    }); 
-		});
-		
-	</script>
-	</body>
 
+						console.log(location);
+					}
+				});
+			});
+			
+			
+		} else {
+			console.log("Oops");
+		}
+		
+		
+		
+		
+
+	});
+</script>
+</body>
 </html>
