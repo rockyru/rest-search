@@ -80,7 +80,7 @@ footer {
 
 .sidebar-nav{
     margin-top: -530px;
-    margin-left: 100px;
+    margin-left: 15px;
     position: fixed;
 }
 
@@ -89,7 +89,7 @@ footer {
 }
 
 .sidebar-nav ul li{
-    margin: 40px;
+    margin: 50px;
 }
 
 .sidebar-nav ul li a i{
