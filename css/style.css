@@ -230,3 +230,9 @@ a.toggle:hover .bar {
     padding: 10px;
     color: #666;
 }
+
+.contextual i{
+    font-size: 26px;
+    margin-left: 0px;
+  
+}
