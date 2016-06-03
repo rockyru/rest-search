@@ -74,7 +74,7 @@ a.toggle:hover .bar {
 
 .contain section.home {
     background: #2196F3;
-    background: url('../img/ru.jpg') no-repeat center center fixed;
+    background: url('../img/ruru.jpg') no-repeat center center fixed;
      -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -212,7 +212,7 @@ a.toggle:hover .bar {
 }
 
 .section-content{
-    margin-top: 50px;
+    margin-top: 150px;
 }
 
 .title{
@@ -224,6 +224,9 @@ a.toggle:hover .bar {
 
 .contextual{
     font-family: "Lato", sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 24px;
+    background: #fff;
+    padding: 10px;
+    color: #666;
 }
