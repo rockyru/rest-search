@@ -1,0 +1,25 @@
+{
+  "name": "Mapagmahal",
+  "authors": [
+    "Ruther Bergonia <ruther.bergonia@gmail.com>"
+  ],
+  "description": "boring",
+  "main": "",
+  "keywords": [
+    "ruther",
+    "portfolio"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
