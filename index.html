@@ -6,7 +6,7 @@
   	<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<title>Ruther Bergonia</title>
-	<link rel="stylesheet" type="text/css" href="./bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./lib/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -21,84 +21,65 @@
 
 </head>
 <body>
-	<nav class="navbar  navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header ">
-                <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <i class="ion-navicon"></i>
-                </button>
-                <a class="navbar-brand smooth-scroll" href="#">rb</h1></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-	<header class="image-bg-fluid-height">
-        <img class="img-responsive img-center" src="" alt="">
-       	
-    </header>
-	 <!-- Content Section -->
-    <div class="sidebar-nav hidden-xs">
-        <ul>
-            <li><a href="#aboutSection" class="smooth-scroll"><i class="ion-ios-list-outline"></i></a></li>
-            <li><a href="#skillsSection"  class="smooth-scroll"><i class="ion-ios-browsers-outline"></i></a></li>
-            <li><a href="#workSection"  class="smooth-scroll"><i class="ion-ios-heart-outline"></i></a></li>
-            
-        </ul>
+	<div class='contain'>
+      <section class='home active'>
+       
+       <div class="col-md-8 col-md-offset-2 section-content">
+        <h3 class="title">
+            i don't like it. but i love it.
+        </h3>
+        <p class="contextual">
+            Hi I'm Ruther, and I am trying very hard to be a front end rockstar.
+        </p>
+       </div>
+      </section>
+      <section class='about'>
+        <h1 class='title'>About</h1>
+      </section>
+      <section class='work'>
+        <h1 class='title'>Work</h1>
+      </section>
+      <section class='contact'>
+        <h1 class='title'>Contact</h1>
+      </section>
     </div>
-
-     <div class="container-fluid about-section smooth-container" id="aboutSection">
-          <div class="container text-center " >
-           <h1 class="section-title">about me</h1>
-           <div class="row">
-               <div class="col-md-8 col-md-offset-2 section-content">
-                   <p>
-                       The Plain and Boring me.
-                   </p>
-               </div>
-           </div>
-         </div>
-     </div>
-    
-    
-     <div class="container-fluid skills-section smooth-container" id="skillsSection">
-          <div class="container  text-center " >
-            <h1 class="section-title">skill set</h1>
-          </div>
-     </div>
-
-     <div class="container-fluid work-section smooth-container" id="workSection">
-          <div class="container  text-center " >
-            <h1 class="section-title">my work thingy</h1>
-          </div>
-     </div>
+    <a class='toggle' href='#'>
+      <span class='bar'></span>
+      <span class='bar'></span>
+      <span class='bar'></span>
+    </a>
    
 
-	<script src="./js/jquery.min.js" type="text/javascript"></script>
-	<script src="./bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="./lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+	<script src="./lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-            $(function() {
-              $('.smooth-scroll[href*="#"]:not([href="#"])').click(function() {
-                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-                  var target = $(this.hash);
-                  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-                  if (target.length) {
-                    $('html, body').animate({
-                      scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                  }
-                }
-              });
-            });
+            // $(function() {
+            //   $('.smooth-scroll[href*="#"]:not([href="#"])').click(function() {
+            //     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            //       var target = $(this.hash);
+            //       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            //       if (target.length) {
+            //         $('html, body').animate({
+            //           scrollTop: target.offset().top
+            //         }, 1000);
+            //         return false;
+            //       }
+            //     }
+            //   });
+            // });
+
+
+        $('a.toggle').on('click', function(){
+          $('section').scrollTop(0);  $('.contain').toggleClass('active');
+            return false;
+        });
+            $('section').on('click', function(){
+                $(this).closest('section').prependTo('.contain');  $('section').removeClass('active');  $(this).addClass('active');
+                $('.contain').removeClass('active');
+         })
+
+
 		});
 	</script>
 </body>
