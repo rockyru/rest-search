@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
-
+*{
+	-webkit-transform: translateZ(0);
+}
 body {
     font-weight: 300;
     font-family: "Raleway", sans-serif;
